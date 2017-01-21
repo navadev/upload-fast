@@ -1,0 +1,148 @@
+body {
+			margin:0;
+			font: 13px Arial, Helvetica, sans-serif;
+			font-weight: bold;
+			text-align:center;
+			padding-top:20px;
+			color:#444;
+			background: #fff;
+		}
+a{
+	color: #005b79;
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: none;
+	color: #6cb6ce;
+	}
+	
+ul {
+	list-style:none;
+	padding:5px;
+	}
+	
+ul li {
+display:inline;
+padding-right:12px;
+	}
+h5{
+font-size:12px;
+text-align: center;
+}
+h3{
+text-align: left;
+font-size:15px;
+color: #555;
+margin: 2px 0 2px 0;
+padding: 0;
+}
+h3.success{
+float:left;
+}
+form{
+margin: 0 0 15px 0;
+}
+#wrapper {margin:0 auto; background: #FFFFFF; margin:1px auto; width:730px; padding:5px;}
+    
+ 	.rnd_top, .rnd_bottom {display:block; background:#FFFFFF; font-size:1px;}
+    .rnd_b1, .rnd_b2, .rnd_b3, .rnd_b4 {display:block; overflow:hidden;}
+    .rnd_b1, .rnd_b2, .rnd_b3 {height:1px;}
+    .rnd_b2, .rnd_b3, .rnd_b4 {background:#FFFFFF; border-left:1px solid #7D9C9F; border-right:1px solid #7D9C9F;}
+    .rnd_b1 {margin:0 5px; background:#7D9C9F;}
+    .rnd_b2 {margin:0 3px; border-width:0 2px;}
+    .rnd_b3 {margin:0 2px;}
+    .rnd_b4 {height:2px; margin:0 1px;}
+
+    
+    .content {
+    display:block;
+    border:0 solid #7D9C9F;
+    border-width:0 1px;
+    padding: 4px;
+    background:#FFFFFF;
+	font-size:12px;
+    padding: 5px 5px 5px 5px;
+}
+.input{
+width: 560px;
+}
+.input_center{
+margin:0 auto; width: 570px;
+}
+.main {
+margin: 5px 50px 5px 50px;
+}
+#upload_submit{
+display:block; margin:0 auto; padding-top: 5px;
+}
+.recent{
+text-align: left;
+margin: 15px 0 15px 0;
+}
+.logo{
+	margin:5px 0 20px 0;
+}
+a:hover.a_logo{
+	text-decoration: none;
+	border: none;
+}
+.option_left{
+float:left;
+margin: 5px 0 0 0;
+}
+.option_right{
+float:right; margin: 5px 0 0 0;
+}
+#result{
+background: #ECECEC;
+display:block;
+height: 205px;
+margin: 0 0 15px 0;
+}
+#result input{
+margin: auto;
+display:block;
+background: #fff;
+border: 1px solid #ccc; 
+}
+#result fieldset{
+padding: 5.5px 0 0 0;
+margin: 0;
+border: none;
+}
+.thumbnail{
+width: 140px;
+height: 140px;
+margin: 22px 0 0 13px;
+border: 1px solid #aaa;
+float: left;
+}
+.bookmark {
+	float:right;
+	margin: 2px 0 2px 0;
+	padding:0;
+}
+
+#codes{
+margin: 0px;
+float: right;
+width: 410px;
+}
+	#codes input{
+	width: 384px;
+	}
+
+.images{
+
+}
+.footer {
+	padding-top:10px;
+	clear:both;
+	text-align:center;
+	font-size:10px;
+		}
+p.tos{
+    padding-left:30px;
+    padding-right:30px;
+    text-align:justify;
+}
