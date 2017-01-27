@@ -25,17 +25,17 @@
                 <li><a href="gallery.php">Gallery</a></li>
                 <li><a href="tos.php">Terms of Service</a></li>
                 <li><?php
-                    if (isset($_SESSION['logged']) && $_SESSION['logged'] == 1){
+                    if (isset($_SESSION['logged']) && $_SESSION['logged'] == 1) {
                         echo "<a href=\"account.php\">Account</a>";
                     }
-                    else{
+                    else {
                         echo "<a href=\"register.php\">Register</a>";
                     } ?></li>
                 <li><?php
-                    if (isset($_SESSION['logged']) && $_SESSION['logged'] == 1){
+                    if (isset($_SESSION['logged']) && $_SESSION['logged'] == 1) {
                         echo "<a href=\"account.php?action=logout\">Logout</a>";
                     }
-                    else{
+                    else {
                         echo "<a href=\"login.php\">Login</a>";
                     } ?></li>
             </ul>

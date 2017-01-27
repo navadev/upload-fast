@@ -20,7 +20,7 @@ function cleanInput($input) {
     return $output;
 }
   
-function clean($input) {
+function clean($input, $cid) {
     if (is_array($input)) {
         foreach($input as $var=>$val) {
             $output[$var] = sanitize($val);
@@ -31,7 +31,6 @@ function clean($input) {
             $input = stripslashes($input);
         }
         $input  = cleanInput($input);
-		include('dbconn.php');
         $output = mysqli_real_escape_string($cid, $input);
     }
     return $output;

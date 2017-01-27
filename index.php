@@ -3,10 +3,9 @@ session_start();
 include ('inc/dbconn.php');
 include ('inc/func.php');
 
-//Other Variables
 $ip = $_SERVER['REMOTE_ADDR'];
 
-if (!isset($_SESSION['username'])){
+if (!isset($_SESSION['username'])) {
 	$username = $ip;
 }
 else {
@@ -15,76 +14,56 @@ else {
 
 $showlinks = null;
 
-//Start Process
-if(isset($_POST['formsent']) && $_POST['formsent'] == '1'){
-	//Real File Information
-	$filename = clean(strtolower($_FILES['form_upload']['name']));
-	$filesize = (int) $_FILES['form_upload']['size'];
-    $filetype = exif_imagetype($_FILES['form_upload']['tmp_name']);
-    
-	$ext = substr($filename, strpos($filename, "."));
-	$random = substr(md5($filename), 0, 5) . $ext;
-
-	$img_path = 'images/' . $random;
-	$thumb_path =  'thumbs/' . $random;
-
-	// Variables
-	$form_private = isset($_POST['form_private']) ? $_POST['form_private'] : null;
-	$form_terms = isset($_POST['form_terms']) ? $_POST['form_terms'] : null;
-
-	if($filename == ""){
+if (isset($_POST['formsent']) && $_POST['formsent'] == '1') {
+	if (!is_uploaded_file($_FILES['form_upload']['tmp_name'])) {
 		$upload_error = "No file was selected. Please try again.";
 	}
-	else{
-		if($filetype != IMAGETYPE_GIF && $filetype != IMAGETYPE_JPEG && $filetype != IMAGETYPE_PNG && $filetype != IMAGETYPE_BMP){
-			$upload_error = "That file type is not allowed. Please try again.";
+	else {
+        $filename = clean(strtolower($_FILES['form_upload']['name']), $cid);
+        $filesize = (int) $_FILES['form_upload']['size'];
+        $filetype = exif_imagetype($_FILES['form_upload']['tmp_name']);
+        
+        $ext = substr($filename, strpos($filename, "."));
+        $random = substr(md5($filename), 0, 5) . $ext;
+
+        $img_path = 'images/' . $random;
+        $thumb_path =  'thumbs/' . $random;
+
+        $form_private = !empty($_POST['form_private']) ? 1 : 0;
+
+        if ($filetype != IMAGETYPE_GIF && $filetype != IMAGETYPE_JPEG &&
+            $filetype != IMAGETYPE_PNG && $filetype != IMAGETYPE_BMP) {
+            $upload_error = "That file type is not allowed. Please try again.";
+        }
+        else if(empty($_POST['form_terms'])) {
+            $upload_error = "You must accept the Terms of Agreement to continue.";
+        }
+        else if ($filesize > 10000000) {
+            $upload_error = "Your filesize exceeds the set upload limit.";	
 		}
 		else{
-			if($form_terms != "on"){
-				$upload_error = "You must accept the Terms of Agreement to continue.";
-			}
-			else{
-				if ($filesize > (10000000)){
-					$upload_error = "Your filesize exceeds the set upload limit.";	
-				}
-				else{
-					move_uploaded_file($_FILES['form_upload']['tmp_name'], $img_path);
+		    move_uploaded_file($_FILES['form_upload']['tmp_name'], $img_path);
 					
-					if($form_private == "on"){ //If private is checked					
-						$SQL = "INSERT INTO images (username, originalname, randomname, type, size, private, timeuploaded) VALUES ('$username', '$filename', '$random', '$filetype', '$filesize', '1', NOW())"; $result = mysqli_query($cid, $SQL);
-						if (!$result) {
-							echo(mysqli_error($cid));
-						}						
-					}
-					else{
-						//If the private field is not checked
-						$SQL = "INSERT INTO images (username, originalname, randomname, type, size, private, timeuploaded) VALUES ('$username', '$filename', '$random', '$filetype', '$filesize', '0', NOW())";
-						$result = mysqli_query($cid, $SQL);
-						if (!$result) {
-							echo(mysqli_error($cid));
-						}					
-					}
-					// Generate Links		
-					$showlinks = true;			
-					$shared_link = "http://www.upload-fast.com/viewer.php?image=" . $random;
-					$direct_link = "http://www.upload-fast.com/images/" . $random;
-					$bb_link = "[URL=". $shared_link ."][IMG]". $direct_link ."[/IMG][/URL]";
-					$site_link = "&lt;a href=&quot;". $shared_link ."&quot;&gt;&lt;img src=&quot;". $direct_link ."&quot; alt=&quot;Fast Image Upload by Upload-Fast&quot; /&gt;&lt;/a&gt;";		
-					
-					// Generate Thumbnail
-						if ($filesize <= (1500000)){
-							include_once('inc/thumbnail.inc.php');
-							$thumb = new Thumbnail($img_path);
-							$thumb->resizePercent(65);
-							$thumb->cropFromCenter(140);
-							$thumb->save($thumb_path);
-							$thumb->destruct();
-						}
-						else{
-							$thumb_path = "";	
-						}
-				}		
-			}
+            $SQL = "INSERT INTO images (username, originalname, randomname, type, size, private, timeuploaded) VALUES ('$username', '$filename', '$random', '".image_type_to_mime_type($filetype)."', '$filesize', '$form_private', NOW())"; 
+            $result = mysqli_query($cid, $SQL);
+            if (!$result) {
+                echo(mysqli_error($cid));
+            }						
+
+            // Generate Links		
+            $showlinks = true;			
+            $shared_link = "http://www.upload-fast.com/viewer.php?image=" . $random;
+            $direct_link = "http://www.upload-fast.com/images/" . $random;
+            $bb_link = "[URL=". $shared_link ."][IMG]". $direct_link ."[/IMG][/URL]";
+            $site_link = "&lt;a href=&quot;". $shared_link ."&quot;&gt;&lt;img src=&quot;". $direct_link ."&quot; alt=&quot;Fast Image Upload by Upload-Fast&quot; /&gt;&lt;/a&gt;";		
+            
+            // Generate Thumbnail
+            include_once('inc/thumbnail.inc.php');
+            $thumb = new Thumbnail($img_path);
+            $thumb->resizePercent(65);
+            $thumb->cropFromCenter(140);
+            $thumb->save($thumb_path);
+            $thumb->destruct();
 		}
 	}
 }
@@ -92,7 +71,7 @@ if(isset($_POST['formsent']) && $_POST['formsent'] == '1'){
 
 include('header.php');
 
-if (isset($upload_error)){
+if (isset($upload_error)) {
     echo "<h5 style=\"color:red;\">". $upload_error ."</h5>";
 }
 ?>		
@@ -102,10 +81,10 @@ if (isset($upload_error)){
 				<p><input name="form_upload" type="file" class="input" id="form_upload" size="77" /></p>
 				<div class="option_left">Make this image private:</div>
                 <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
-				<div class="option_right"><input type="checkbox" checked="checked" name="form_private" id="form_private" /></div>
+				<div class="option_right"><input type="checkbox" checked="checked" name="form_private" id="form_private" value="1"/></div>
 				<div style="clear:both"></div>
 				<div class="option_left">Accept <a href="tos.php">Terms of Agreement</a>:</div>
-				<div class="option_right"><input type="checkbox" checked="checked" name="form_terms" id="form_terms"></div>
+				<div class="option_right"><input type="checkbox" checked="checked" name="form_terms" id="form_terms" value="1"></div>
 				<div style="clear:both"></div>
 				<input type="hidden" value="1" name="formsent" />
 				<input id="form_submit" name="form_submit" type="image" src="img/upload.png" value="Upload" />				
@@ -114,7 +93,7 @@ if (isset($upload_error)){
 			</form>
 			
 		<?php
-		if ($showlinks == true){
+		if ($showlinks == true) {
 			echo'
 		<div id="result">
 			<div style="background:#fff;">
@@ -141,8 +120,8 @@ if (isset($upload_error)){
 			<div style="clear:both;"></div>
 		</div>		
 				';
-			}
-		else{
+		}
+		else {
 		?>	
 			
 			<div class="gallery">
@@ -154,7 +133,7 @@ if (isset($upload_error)){
 					if (!$result) {
 					    echo(mysqli_error($cid));
                     }
-                    while($row = mysqli_fetch_assoc($result)) {
+                    while ($row = mysqli_fetch_assoc($result)) {
                         echo "<li class=\"image\"><a href=\"images/".$row['randomname']."\"><img src=\"thumbs/" . $row['randomname'] ."\"></a></li>";
                     }
                 ?>

@@ -8,12 +8,13 @@ require('header.php') ?>
 		<?php
 		$SQL = "SELECT * FROM images WHERE private <> 1 ORDER BY timeuploaded DESC";
 		$result = mysqli_query($cid, $SQL);
-		if(!$result) { echo (mysqli_error($cid)); }
-		else{
-			while($row = mysqli_fetch_array($result)){
+        if (!$result) {
+            echo (mysqli_error($cid)); 
+        }
+		else {
+			while ($row = mysqli_fetch_array($result)) {
 				echo "<li class=\"image\">";
 				echo "<a href=\"images/".$row['randomname']."\"><img src=\"thumbs/".$row['randomname']."\" border=\"0\" ></a>";
-				// echo "<h5>Uploaded: ". substr($row['timeuploaded'],0,10) ." </h5>";	
 				echo "</li>";	  
 			}
 		}

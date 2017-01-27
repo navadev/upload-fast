@@ -13,10 +13,10 @@ $answers = array('white', 40, 'sandwich', 20, 8, 'red');
 
 
 if(isset($_POST['register'])) {
-    $username = clean($_POST['username']);
-    $email = clean($_POST['email']);
-    $password = clean($_POST['password']);
-    $password_confirm = clean($_POST['password_confirm']);
+    $username = clean($_POST['username'], $cid);
+    $email = clean($_POST['email'], $cid);
+    $password = clean($_POST['password'], $cid);
+    $password_confirm = clean($_POST['password_confirm'], $cid);
 
     if ($username == "" || $password == "" || $password_confirm == "" || $email == "") {
         $error = "One or more fields are blank. All fields are required.";
@@ -33,8 +33,10 @@ if(isset($_POST['register'])) {
     else {
         $SQL = "select * from users where username='$username' OR email='$email'";
         $result = mysqli_query($cid, $SQL);
-        if(!$result) { echo (mysqli_error($cid)); }
-        else{
+        if (!$result) { 
+            echo (mysqli_error($cid));
+        }
+        else {
             $row = mysqli_fetch_array($result);
         }
 
@@ -48,7 +50,10 @@ if(isset($_POST['register'])) {
             $password = password_hash($password, PASSWORD_DEFAULT);
             $SQL = "INSERT INTO users (username, password, email, ip, time_registered) VALUES ('$username', '$password', '$email', '".$_SERVER['REMOTE_ADDR']."', NOW())";
             $result = mysqli_query($cid, $SQL);
-            if(!$result) { echo (mysqli_error($cid)); }										
+            if (!$result) {
+                echo (mysqli_error($cid));
+            }										
+
             //Emails them the password
             send_registration_email($username, $email);
             unset($_SESSION['captchaid']);
@@ -62,10 +67,10 @@ include('header.php');
 ?>
 		<div class="main">
 <?php
-if (isset($error)){
+if (isset($error)) {
     echo "<h5 style=\"color:red;\">". $error ."</h5>";
 }
-if(!isset($success)) {
+if (!isset($success)) {
 ?>
             <form name="register" method="post" action="register.php">
 

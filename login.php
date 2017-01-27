@@ -3,9 +3,9 @@ session_start();
 include ('inc/dbconn.php');
 include ('inc/func.php');
 
-if(isset($_POST['login'])) {
-    $username = clean($_POST['username']);
-    $password = clean($_POST['password']);
+if (isset($_POST['login'])) {
+    $username = clean($_POST['username'], $cid);
+    $password = clean($_POST['password'], $cid);
 
     if ($username == "" || $password == "") {
         $error = "One or more fields were left blank, please try again.";
@@ -13,7 +13,7 @@ if(isset($_POST['login'])) {
     else {
         $SQL = "select * from users where username='$username'";
         $result = mysqli_query($cid, $SQL);
-        if(!$result) { 
+        if (!$result) { 
             $error = "Incorrect login. Please try again.";
         }
         else {
@@ -35,7 +35,7 @@ include('header.php');
 ?>
 		<div class="main">
 <?php
-if (isset($error)){
+if (isset($error)) {
     echo "<h5 style=\"color:red;\">". $error ."</h5>";
 }
 ?>
