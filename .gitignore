@@ -1,3 +1,5 @@
 img/*.psd
-/images/
-/thumbs/
+images/*
+!images/.gitkeep
+thumbs/*
+!thumbs/.gitkeep
