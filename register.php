@@ -52,7 +52,7 @@ if(isset($_POST['register'])) {
             $result = mysqli_query($cid, $SQL);
             if (!$result) {
                 echo (mysqli_error($cid));
-            }										
+            }                                       
 
             //Emails them the password
             send_registration_email($username, $email);
@@ -65,7 +65,7 @@ if(isset($_POST['register'])) {
 
 include('header.php');
 ?>
-		<div class="main">
+        <div class="main">
 <?php
 if (isset($error)) {
     echo "<h5 style=\"color:red;\">". $error ."</h5>";
@@ -111,10 +111,10 @@ else {
     echo "<h5 style=\"color:green;\">". $success."</h5>";
 }
 ?>
-	</div>
-		<p class="footer">&copy; 2007 <a href="http://www.upload-fast.com">Upload-Fast.com</a> - Fast Image Uploads | All Rights Reserved</p>
-	</div>
-	<b class="rnd_bottom"><b class="rnd_b4"></b><b class="rnd_b3"></b><b class="rnd_b2"></b><b class="rnd_b1"></b></b>
+    </div>
+        <p class="footer">&copy; 2007 <a href="http://www.upload-fast.com">Upload-Fast.com</a> - Fast Image Uploads | All Rights Reserved</p>
+    </div>
+    <b class="rnd_bottom"><b class="rnd_b4"></b><b class="rnd_b3"></b><b class="rnd_b2"></b><b class="rnd_b1"></b></b>
 </div>
 
 </body>

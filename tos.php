@@ -1,8 +1,8 @@
 <?php
 session_start();
 require('header.php') 
-?>		
-		<div class="main">
+?>      
+        <div class="main">
         
             <p class="tos">
             <a href="http://www.upload-fast.com">Upload-Fast.com </a>does not knowingly host any unlawful, harmful, threatening, abusive, illegal, copyright infringing, harassing, tortuous, defamatory, vulgar, obscene, libelous, invasive of another's privacy, hateful, or racially, ethnically or otherwise objectionable; harm minors in any way; impersonate any person or entity, content. We take strong action against piracy and do not tolerate it.
@@ -31,10 +31,10 @@ SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF CERTAIN WARRANTIES OR THE LIMIT
             <h1>OTHER</h1>
                 <p class="tos">
                     BY UPLOADING ANY FILE WITH ANY EXTENSION, YOU AGREE THAT <a href="http://www.upload-fast.com">Upload-Fast.com </a>MAY REMOVE, DELETE, HENCE TO HOST, SERVE, MAKE AVAILABLE, YOUR FILE(S). YOU ALSO AGREE THAT <a href="http://www.upload-fast.com">Upload-Fast.com </a>DOES NOT HAVE TO SUPPLY ANY REASON TO YOU OR ANYONE ELSE AS TO WHY YOUR FILE(S) WERE REMOVED. WE RESERVE THE RIGHT TO DELETE ANY FILE, AT ANY TIME, FOR ANY REASON. "UNLIMITED DOWNLOADS" REFERS TO OUR PROCESSOR AND BANDWIDTH LIMITS. WE MAKE NECESSARY UPGRADES FROM TIME TO TIME, BUT ON SOME OCCASIONS YOUR FILES MAY BE REMOVED DUE TO EXCESSIVE BANDWIDTH, EXCESSIVE CPU. WE ARE NOT BILLIONAIRES WITH UNLIMITED RESOURCES. ALL FILES, SPEED, ETC, ARE HOSTED ON A "BEST EFFORT" BASIS. WE DO NOT MAKE ANY GUARANTEES, WHETHER EXPRESS OR IMPLIED. YOU MAY NOT RESALE YOUR ACCESS TO <a href="http://www.upload-fast.com">Upload-Fast.com</a>. <a href="http://www.upload-fast.com">Upload-Fast.com </a>ALSO RESERVES THE RIGHT TO CHANGE, MODIFY, OR ADD TO THIS (TERMS OF SERVICE) WITHOUT ANY NOTIFICATION TO ANYONE. PLEASE CHECK THIS REGULARLY. <a href="http://www.upload-fast.com">Upload-Fast.com </a>IS NOT RESPONSIBLE FOR ANY CONTENT UPLOADED.
-	</div>	
-		<p class="footer">&copy; 2007 <a href="http://www.upload-fast.com">Upload-Fast.com</a> - Fast Image Uploads | All Rights Reserved</p>
-	</div>
-	<b class="rnd_bottom"><b class="rnd_b4"></b><b class="rnd_b3"></b><b class="rnd_b2"></b><b class="rnd_b1"></b></b>
+    </div>  
+        <p class="footer">&copy; 2007 <a href="http://www.upload-fast.com">Upload-Fast.com</a> - Fast Image Uploads | All Rights Reserved</p>
+    </div>
+    <b class="rnd_bottom"><b class="rnd_b4"></b><b class="rnd_b3"></b><b class="rnd_b2"></b><b class="rnd_b1"></b></b>
 </div>
 
 </body>

@@ -16,9 +16,9 @@ jQuery.fn.preventDoubleSubmission = function () {
 
 $(document).ready(function() {
     $('#form_submit').click(function(){
-	    $('#form_submit').toggle();
-	    $('#loader').toggle();
-	});
+        $('#form_submit').toggle();
+        $('#loader').toggle();
+    });
 
     $('form').preventDoubleSubmission();
  });

@@ -20,12 +20,12 @@ if (isset($_POST['login'])) {
             $row = mysqli_fetch_array($result);
             if (!password_verify($password, $row['password'])) {
                 $error = "Incorrect login. Please try again.";
-			    $_SESSION["logged"] = 0; 
-			    unset($_SESSION["username"]);
+                $_SESSION["logged"] = 0; 
+                unset($_SESSION["username"]);
             }
             else {
-			    $_SESSION["logged"] = 1; 
-			    $_SESSION["username"] = $username; 
+                $_SESSION["logged"] = 1; 
+                $_SESSION["username"] = $username; 
                 header('Location: account.php');
             }
         }
@@ -33,7 +33,7 @@ if (isset($_POST['login'])) {
 }
 include('header.php');
 ?>
-		<div class="main">
+        <div class="main">
 <?php
 if (isset($error)) {
     echo "<h5 style=\"color:red;\">". $error ."</h5>";
@@ -56,10 +56,10 @@ if (isset($error)) {
         </p>
 
         </form>
-	</div>
-	<p class="footer">&copy; 2007 <a href="http://www.upload-fast.com">Upload-Fast.com</a> - Fast Image Uploads | All Rights Reserved</p>
     </div>
-	<b class="rnd_bottom"><b class="rnd_b4"></b><b class="rnd_b3"></b><b class="rnd_b2"></b><b class="rnd_b1"></b></b>
+    <p class="footer">&copy; 2007 <a href="http://www.upload-fast.com">Upload-Fast.com</a> - Fast Image Uploads | All Rights Reserved</p>
+    </div>
+    <b class="rnd_bottom"><b class="rnd_b4"></b><b class="rnd_b3"></b><b class="rnd_b2"></b><b class="rnd_b1"></b></b>
 </div>
 
 </body>
