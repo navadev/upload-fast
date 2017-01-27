@@ -77,7 +77,7 @@ if (isset($upload_error)) {
 ?>		
 		<div class="main">
 			<form method="post" enctype="multipart/form-data" action="index.php">
-				<h5>Use the form below to store images. Limit per upload is <i>10Mb</i>. Please <a href="member.php?action=register">register</a> to manage images.</h5>				
+				<h5>Use the form below to store images. Limit per upload is <i>10Mb</i>. Please <a href="register.php">register</a> to manage images.</h5>				
 				<p><input name="form_upload" type="file" class="input" id="form_upload" size="77" /></p>
 				<div class="option_left">Make this image private:</div>
                 <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
